@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aia - 2D Анимациялық Ертегі</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        #upload {
+            margin: 20px;
+        }
+        canvas {
+            border: 1px solid black;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Aia - Қазақша 2D Анимациялық Ертегі</h1>
+    <input type="file" id="upload" accept=".txt">
+    <button onclick="generateAnimation()">Анимация жасау</button>
+    <br>
+    <canvas id="animationCanvas" width="500" height="300"></canvas>
+    
+    <script>
+        function generateAnimation() {
+            const canvas = document.getElementById("animationCanvas");
+            const ctx = canvas.getContext("2d");
+            let x = 0;
+            let frame = 0;
+            function drawFrame() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = "blue";
+                ctx.fillRect(x, 100, 50, 50);
+                x += 2;
+                if (x > canvas.width) x = -50;
+                frame++;
+                requestAnimationFrame(drawFrame);
+            }
+            drawFrame();
+        }
+    </script>
+</body>
+</html>
